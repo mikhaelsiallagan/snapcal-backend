@@ -1,0 +1,4 @@
+/node_modules
+.env
+package-lock.json
+dummy-be-snapcal-firebase.json
