@@ -1,14 +1,16 @@
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
+const expired = process.env.JWT_EXPIRED;
 
-if (!secret) {
-    throw new Error("JWT_SECRET is not defined");
-}
-
-exports.generateToken = (user) => {
-    return jwt.sign({ id: user.email }, secret, { expiresIn: '1h' });
+const generateToken = (payload) => {
+    return jwt.sign(payload, secret, { expiresIn: '1h' });
 };
 
-exports.verifyToken = (token) => {
+const verifyToken = (token) => {
     return jwt.verify(token, secret);
+};
+
+module.exports = {
+    generateToken,
+    verifyToken
 };

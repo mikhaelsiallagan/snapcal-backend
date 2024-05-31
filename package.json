@@ -1,14 +1,15 @@
 {
-  "name": "backend",
+  "name": "v1.1",
   "version": "1.0.0",
-  "description": "backend-cc",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon app.js",
     "start": "node app.js"
   },
-  "author": "mikhaelsiallagan",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
