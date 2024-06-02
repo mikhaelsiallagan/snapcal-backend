@@ -15,11 +15,14 @@ const getProfileDetails = async (req, res) => {
         }
 
         const userData = userDoc.data();
+        // Exclude the password from the response
+        const { password, updatedAt, createdAt, token, ...userWithoutSensitiveInfo } = userData;
+
         return res.status(201).json({
             status: "successful",
             message: "User get profile success",
             userId: userData.userId,
-            data: userData
+            data: userWithoutSensitiveInfo
         });
     } catch (error) {
         console.error(error);
@@ -29,6 +32,7 @@ const getProfileDetails = async (req, res) => {
         });
     }
 };
+
 
 const updateProfileDetails = async (req, res) => {
     const { email } = req.user;

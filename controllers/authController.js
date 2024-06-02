@@ -119,9 +119,45 @@ const deleteAccount = async (req, res) => {
     }
 };
 
+const resetPassword = async (req, res) => {
+    const { email } = req.user; // Extract email from authenticated user
+    const { password } = req.body; // Get new password from request body
+
+    try {
+        const userRef = db.collection('users').doc(email);
+        const userDoc = await userRef.get();
+
+        if (!userDoc.exists) {
+            return res.status(400).json({
+                status: "fail",
+                message: "User not found"
+            });
+        }
+
+        const hashedPassword = await hashPassword(password);
+
+        await userRef.update({
+            password: hashedPassword,
+            updatedAt: new Date()
+        });
+
+        return res.status(201).json({
+            status: "successful",
+            message: "Password reset successfully"
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            status: "error",
+            message: "Internal Server Error"
+        });
+    }
+};
+
 module.exports = {
     register,
     login,
     logout,
-    deleteAccount
+    deleteAccount,
+    resetPassword
 };
