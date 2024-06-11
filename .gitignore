@@ -2,3 +2,4 @@
 .env
 package-lock.json
 dummy-be-snapcal-firebase.json
+dummy-be-snapcal-bucket.json

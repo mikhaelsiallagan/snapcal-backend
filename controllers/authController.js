@@ -4,7 +4,7 @@ const User = require('../models/user');
 const { hashPassword, comparePassword } = require('../utils/hashPassword');
 const { generateToken } = require('../utils/jwtUtils');
 
-const { v4: uuidv4 } = require('uuid');  // Import UUID generator
+const { v4: uuidv4 } = require('uuid');  
 
 const register = async (req, res) => {
     const { name, email, password } = req.body;
@@ -20,10 +20,10 @@ const register = async (req, res) => {
             });
         }
 
-        const userId = uuidv4();  // Generate unique userId
+        const userId = uuidv4(); 
         const hashedPassword = await hashPassword(password);
         const user = new User(email, hashedPassword, name);
-        user.userId = userId;  // Assign userId
+        user.userId = userId;  
 
         await userRef.set(Object.assign({}, user));
 
@@ -120,8 +120,8 @@ const deleteAccount = async (req, res) => {
 };
 
 const resetPassword = async (req, res) => {
-    const { email } = req.user; // Extract email from authenticated user
-    const { password } = req.body; // Get new password from request body
+    const { email } = req.user; 
+    const { password } = req.body; 
 
     try {
         const userRef = db.collection('users').doc(email);
