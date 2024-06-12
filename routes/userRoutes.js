@@ -2,8 +2,7 @@ const express = require('express');
 const { getProfileDetails, updateProfileDetails, uploadPhoto } = require('../controllers/profileController');
 const authMiddleware = require('../middleware/authMiddleware');
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
-
+const upload = multer({ dest: '/tmp/' });
 
 const router = express.Router();
 

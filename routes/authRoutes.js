@@ -4,6 +4,10 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
+router.get('/', authMiddleware, (req, res) => {
+    res.send('Hello World!');
+});
+
 router.post('/register', register);
 router.post('/login', login);
 router.post('/logout', authMiddleware, logout);
